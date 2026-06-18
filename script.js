@@ -103,6 +103,7 @@
         var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__link'));
 
         function updateActiveLink(y) {
+            if (!sections || !navLinks) return; // evita erro na 1ª chamada (antes das variáveis existirem)
             var headerH = header ? header.offsetHeight : 0;
             var current = '';
             sections.forEach(function (sec) {
