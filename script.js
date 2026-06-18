@@ -213,7 +213,47 @@
             });
         }
 
-        /* ---------- FORMULÁRIO ---------- */
+        /* ---------- FAQ (acordeão: abre um, fecha os outros) ---------- */
+        var faqItems = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+        faqItems.forEach(function (item) {
+            item.addEventListener('toggle', function () {
+                if (item.open) {
+                    faqItems.forEach(function (other) {
+                        if (other !== item) other.open = false;
+                    });
+                }
+            });
+        });
+
+        /* ---------- PARALLAX SUAVE NO HERO ---------- */
+        var hero = document.getElementById('inicio');
+        var heroBg = document.querySelector('.hero__bg');
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var finePointer = window.matchMedia('(pointer: fine)').matches;
+        if (hero && heroBg && !reduceMotion && finePointer) {
+            var raf = null;
+            hero.addEventListener('mousemove', function (e) {
+                if (raf) return;
+                raf = requestAnimationFrame(function () {
+                    var r = hero.getBoundingClientRect();
+                    var x = (e.clientX - r.left) / r.width - 0.5;
+                    var y = (e.clientY - r.top) / r.height - 0.5;
+                    heroBg.style.transform = 'translate(' + (x * -26).toFixed(1) + 'px,' + (y * -26).toFixed(1) + 'px)';
+                    raf = null;
+                });
+            });
+            hero.addEventListener('mouseleave', function () {
+                heroBg.style.transition = 'transform 0.6s ease';
+                heroBg.style.transform = '';
+                setTimeout(function () { heroBg.style.transition = ''; }, 600);
+            });
+        }
+
+        /* ---------- FORMULÁRIO → WHATSAPP ---------- */
+        /* Como o GitHub Pages é estático (sem servidor de e-mail), o envio
+           monta a mensagem e abre o WhatsApp já preenchido. Para receber por
+           e-mail, troque este bloco por um serviço como Formspree/Web3Forms. */
+        var WHATSAPP_NUMBER = '5511970007000';
         var form = document.getElementById('contactForm');
         var success = document.getElementById('formSuccess');
         if (form) {
@@ -229,7 +269,26 @@
                     field.classList.toggle('is-invalid', !ok);
                     if (!ok) valid = false;
                 });
-                if (!valid) return;
+                if (!valid) {
+                    var firstInvalid = form.querySelector('.is-invalid');
+                    if (firstInvalid) firstInvalid.focus();
+                    return;
+                }
+
+                var get = function (name) {
+                    var el = form.elements[name];
+                    return el ? el.value.trim() : '';
+                };
+                var texto =
+                    'Olá! Gostaria de solicitar um atendimento jurídico.\n\n' +
+                    '• Nome: ' + get('nome') + '\n' +
+                    '• E-mail: ' + get('email') + '\n' +
+                    (get('telefone') ? '• Telefone: ' + get('telefone') + '\n' : '') +
+                    '• Assunto: ' + get('assunto') + '\n' +
+                    '• Mensagem: ' + get('mensagem');
+
+                var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
+                window.open(url, '_blank', 'noopener');
 
                 if (success) {
                     success.classList.add('is-visible');
