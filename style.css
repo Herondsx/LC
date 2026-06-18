@@ -1151,7 +1151,8 @@ input, textarea, select { font-family: inherit; }
         position: fixed; inset: 0;
         background: rgba(6, 19, 32, 0.6);
         backdrop-filter: blur(2px);
-        z-index: 903;
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 899; /* abaixo do header (900) p/ não desfocar o próprio menu */
         opacity: 0; visibility: hidden;
         transition: opacity 0.4s ease, visibility 0.4s ease;
     }
