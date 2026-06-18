@@ -768,8 +768,8 @@ input, textarea, select { font-family: inherit; }
 .footer { background: var(--navy-950); color: rgba(255, 255, 255, 0.7); }
 .footer__inner {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: 1.7fr 1fr 1fr 1.1fr;
+    gap: 44px;
     padding: 76px 28px 56px;
 }
 .brand--footer { margin-bottom: 22px; }
@@ -1114,6 +1114,7 @@ input, textarea, select { font-family: inherit; }
     .faq__grid { grid-template-columns: 1fr; gap: 40px; }
     .faq__intro { position: static; }
     .contato__grid { grid-template-columns: 1fr; gap: 48px; }
+    .footer__inner { grid-template-columns: 1.4fr 1fr 1fr; }
 }
 
 /* Nav mobile / hambúrguer a partir de 992px (acomoda mais itens no menu) */
@@ -1188,7 +1189,8 @@ input, textarea, select { font-family: inherit; }
     .contato__form-wrap { padding: 30px 22px; }
     .form__row--2 { grid-template-columns: 1fr; }
 
-    .footer__inner { grid-template-columns: 1fr; gap: 36px; padding: 56px 28px 44px; }
+    .footer__inner { grid-template-columns: 1fr 1fr; gap: 32px 28px; padding: 56px 28px 44px; }
+    .footer__brand { grid-column: 1 / -1; }
     .footer__disclaimer { text-align: left; }
     .footer__bottom-inner { flex-direction: column; align-items: flex-start; }
 
@@ -1202,6 +1204,7 @@ input, textarea, select { font-family: inherit; }
     .section__title { font-size: 1.7rem; }
     .hero__actions { flex-direction: column; }
     .hero__actions .btn { width: 100%; }
+    .footer__inner { grid-template-columns: 1fr; }
 }
 
 /* ---------- REDUCED MOTION ---------- */
