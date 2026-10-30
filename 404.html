@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Página não encontrada | Luiz Chaves</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#03111a">
+    <style>
+        :root { color-scheme: dark; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: radial-gradient(50% 40% at 50% 35%, rgba(22, 76, 104, .55), transparent 70%), #03111a;
+            color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+            text-align: center;
+            letter-spacing: -.022em;
+            -webkit-font-smoothing: antialiased;
+        }
+        .logo { display: block; width: 72px; height: 72px; margin: 0 auto 28px; border-radius: 50%; box-shadow: 0 20px 60px -10px rgba(200, 159, 113, .45); }
+        h1 { margin: 0; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 600; letter-spacing: -.045em; line-height: 1.05; }
+        p { margin: 16px auto 32px; max-width: 420px; color: #a1a1a6; font-size: 1.1875rem; }
+        a {
+            display: inline-flex; align-items: center; min-height: 50px; padding: 12px 28px; border-radius: 999px;
+            background: linear-gradient(135deg, #f0e2c3, #c89f71 50%, #a9824f); color: #071d29;
+            font-size: 17px; font-weight: 500; text-decoration: none;
+        }
+        a:focus-visible { outline: 2px solid #c89f71; outline-offset: 3px; }
+    </style>
+</head>
+<body>
+    <main>
+        <svg class="logo" viewBox="7 27 221 221" aria-hidden="true">
+            <defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="60" y1="60" x2="180" y2="210"><stop offset="0" stop-color="#f0e2c3"/><stop offset=".45" stop-color="#c89f71"/><stop offset="1" stop-color="#8c6a3f"/></linearGradient></defs>
+            <circle cx="117.5" cy="137.5" r="110.5" fill="#0c2d3e"/>
+            <path d="M72 68.5V150a53 53 0 0 0 74.7 48.3" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M130.9 88.6A43 43 0 1 0 167 162" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <h1>Página não<br>encontrada.</h1>
+        <p>O endereço que você procurou não existe ou foi movido.</p>
+        <a id="home" href="./">Voltar ao início</a>
+    </main>
+    <script>
+        // No GitHub Pages de projeto (usuario.github.io/REPO/) o início fica em /REPO/; com domínio próprio, em /
+        var seg = location.pathname.split('/')[1];
+        document.getElementById('home').href = /github\.io$/.test(location.hostname) && seg ? '/' + seg + '/' : '/';
+    </script>
+</body>
+</html>
